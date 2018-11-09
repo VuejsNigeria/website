@@ -42,8 +42,22 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    //'@nuxtjs/axios',
+    //'@nuxtjs/auth'
   ],
+  // auth: {
+  //   // Options
+  //   redirect: {
+  //     login: '/login',
+  //     logout: '/',
+  //     callback: '/login',
+  //     home: '/'
+  //   }
+  // },
+  // router: {
+  //   middleware: ['auth']
+  // },
 
   /*
   ** Build configuration
