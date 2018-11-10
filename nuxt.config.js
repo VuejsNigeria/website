@@ -14,8 +14,12 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+      }
     ]
   },
 
@@ -27,22 +31,44 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-    '~/assets/style/app.styl'
-  ],
+  css: ['~/assets/style/app.styl'],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-    '@/plugins/vuetify'
-  ],
+  plugins: ['@/plugins/vuetify'],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/pwa',
+    '@nuxtjs/onesignal',
+    //'@nuxtjs/axios',
+    //'@nuxtjs/auth'
   ],
+  // Options
+  oneSignal: {
+    init: {
+      appId: 'YOUR_APP_ID',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: true
+      }
+    }
+  },
+  // auth: {
+  //   // Options
+  //   redirect: {
+  //     login: '/login',
+  //     logout: '/',
+  //     callback: '/login',
+  //     home: '/'
+  //   }
+  // },
+  // router: {
+  //   middleware: ['auth']
+  // },
 
   /*
   ** Build configuration
