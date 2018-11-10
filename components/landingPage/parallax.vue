@@ -2,6 +2,7 @@
   <v-parallax
     dark
     src="https://w-dog.net/wallpapers/12/10/555931010272670.jpg"
+    height="600"
   >
     <v-container
       grid-list-md
