@@ -13,10 +13,24 @@
         fill-height
         wrap
       >
-        <v-flex xs6>
+        <v-flex
+          xs12
+          sm12
+          md6
+          lg6
+          xl6>
+          <v-img :src="`https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2000px-Vue.js_Logo_2.svg.png`"/>
+        </v-flex>
+        <v-flex
+          xs6
+          xs12
+          sm12
+          md6
+          lg6
+          xl6>
           <h1 class="display-2 font-weight-thin mb-3">Vue Nigeria Community</h1>
           <h4 class="subheading">Stay up to date with upcoming meetups and meet Vue gurus or join our Ecosystem to get help with any questions you might have.</h4>
-          <div class="mt-3">
+          <div class="mb-3">
             <v-btn
               large
               class="green--text"
@@ -25,9 +39,7 @@
               target="_blank">Visit Vue Land</v-btn>
           </div>
         </v-flex>
-        <v-flex xs6>
-          <v-img :src="`https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2000px-Vue.js_Logo_2.svg.png`"/>
-        </v-flex>
+
       </v-layout>
     </v-container>
   </v-parallax>

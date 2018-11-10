@@ -4,7 +4,7 @@
       color="white"
       class="teal--text"
       flat="true">
-      <v-toolbar-title>Vue Naigeria</v-toolbar-title>
+      <v-toolbar-title>Vue Nigeria</v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn

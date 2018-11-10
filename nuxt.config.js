@@ -42,10 +42,21 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/onesignal',
     //'@nuxtjs/axios',
     //'@nuxtjs/auth'
   ],
+  // Options
+  oneSignal: {
+    init: {
+      appId: 'YOUR_APP_ID',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+        disable: true
+      }
+    }
+  },
   // auth: {
   //   // Options
   //   redirect: {
