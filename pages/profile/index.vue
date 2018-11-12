@@ -3,23 +3,25 @@
     <v-toolbar
       dark
       color="teal">
-      <v-toolbar-title>Login</v-toolbar-title>
+      <v-toolbar-title>Manage Profile</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form>
         <v-text-field
           v-model="email"
           prepend-icon="person"
-          name="login"
           label="Email"
           type="text"/>
         <v-text-field
-          id="password"
+          v-model="fullname"
+          prepend-icon="person"
+          label="Fullname"
+          type="text"/>
+        <v-text-field
           v-model="password"
-          prepend-icon="lock"
-          name="password"
+          prepend-icon="person"
           label="Password"
-          type="password"/>
+          type="text"/>
       </v-form>
     </v-card-text>
     <v-card-actions>
@@ -27,7 +29,7 @@
       <v-btn
         color="teal"
         class="white--text" 
-        @click.prevent="login">Login</v-btn>
+        @click.prevent="login">Update</v-btn>
     </v-card-actions>
   </v-card>
 </template>

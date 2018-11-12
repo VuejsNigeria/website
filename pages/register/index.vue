@@ -17,6 +17,7 @@
       <v-window-item :value="1">
         <v-card-text>
           <v-text-field
+            v-model="email"
             label="Email"
             value="john@vuetifyjs.com"
           />
@@ -29,10 +30,12 @@
       <v-window-item :value="2">
         <v-card-text>
           <v-text-field
+            v-model="password1"
             label="Password"
             type="password"
           />
           <v-text-field
+            v-model="password2"
             label="Confirm Password"
             type="password"
           />
@@ -82,14 +85,16 @@
 </template>
 
 <script>
-/* eslint-disable */
-/* eslint-enable */
+import firebase from '../../firebaseInit.js'
 
 export default {
   name: 'Register',
   layout: 'authentication',
   data: () => ({
-    step: 1
+    step: 1,
+    email: '',
+    password1: '',
+    password2: ''
   }),
 
   computed: {
@@ -100,18 +105,29 @@ export default {
         case 2:
           return 'Create a password'
         default:
+          this.register()
           return 'Account created'
-      }
-    },
-    triggerRegister() {
-      if (this.step == 3) {
-        return this.register()
       }
     }
   },
   methods: {
     register() {
-      console.log('sign up success')
+      if (this.password1 !== this.password2) {
+        alert('Password does not match')
+        this.step = 2
+        return
+      }
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password1)
+        .then(
+          user => {
+            alert(`Account Successfully created for ${this.email}`)
+          },
+          err => {
+            alert(err.message)
+          }
+        )
     }
   }
 }
