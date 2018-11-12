@@ -2,7 +2,7 @@
   <v-parallax
     dark
     src="https://w-dog.net/wallpapers/12/10/555931010272670.jpg"
-    height="600"
+    height="700"
   >
     <v-container
       grid-list-md
@@ -34,21 +34,23 @@
           <div class="mt-3">
             <v-btn
               large
-              class="green--text"
+              class="teal--text"
               round
               href="https://discord.gg/"
               target="_blank">Visit Vue Nigeria Land</v-btn>
+            <ScrollDownIconAnimation/>
           </div>
         </v-flex>
-
       </v-layout>
     </v-container>
   </v-parallax>
 </template>
 
 <script>
+import ScrollDownIconAnimation from './scrollDownIconAnimation'
 export default {
-  name: 'Parallax'
+  name: 'Parallax',
+  components: { ScrollDownIconAnimation }
 }
 </script>
 
