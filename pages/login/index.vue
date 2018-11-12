@@ -1,9 +1,9 @@
 <template>
   <v-card class="elevation-12">
     <v-toolbar
-      dark
-      color="teal">
-      <v-toolbar-title>Become a Member</v-toolbar-title>
+      color="white"
+      flat="true">
+      <v-toolbar-title class="teal--text">Become a Member</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form>

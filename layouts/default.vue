@@ -1,13 +1,18 @@
 <template>
   <v-app class="white">
     <v-toolbar
+      class="teal--text"
       color="white"
-      class="teal--text">
+      fixed="true"
+      dark
+      inverted-scroll="true"
+      prominent="true">
       <v-toolbar-title>VN</v-toolbar-title>
       <v-divider
         class="mx-3"
         inset
         vertical
+        color="grey"
       />
 
       <span class="subheading hidden-sm-and-down">Vue Nigeria</span>
@@ -20,13 +25,13 @@
           to="/">Home</v-btn>
         <v-btn
           flat
-          color="teal"
           nuxt="true"
+          color="teal"
           to="/login">Login</v-btn>
         <v-btn
           flat
-          color="teal"
           nuxt="true"
+          color="teal"
           to="/register">Signup</v-btn>
       </v-toolbar-items>
     </v-toolbar>
