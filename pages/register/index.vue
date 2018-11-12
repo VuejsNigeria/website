@@ -51,7 +51,8 @@
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png"
           />
           <h3 class="title font-weight-light mb-2">Welcome to Vuejs Nigeria</h3>
-          <span class="caption teal--text">Thanks for signing up!</span>
+          <span class="caption teal--text">Thanks for signing up!</span> <br>
+          <span class="caption teal--text"><a href="login"> Click to Login </a></span> 
         </div>
       </v-window-item>
     </v-window>
@@ -81,6 +82,9 @@
 </template>
 
 <script>
+/* eslint-disable */
+/* eslint-enable */
+
 export default {
   name: 'Register',
   layout: 'authentication',
@@ -98,6 +102,16 @@ export default {
         default:
           return 'Account created'
       }
+    },
+    triggerRegister() {
+      if (this.step == 3) {
+        return this.register()
+      }
+    }
+  },
+  methods: {
+    register() {
+      console.log('sign up success')
     }
   }
 }
