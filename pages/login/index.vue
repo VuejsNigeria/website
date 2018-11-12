@@ -3,17 +3,19 @@
     <v-toolbar
       dark
       color="teal">
-      <v-toolbar-title>Become a Member</v-toolbar-title>
+      <v-toolbar-title>Login</v-toolbar-title>
     </v-toolbar>
     <v-card-text>
       <v-form>
         <v-text-field
+          v-model="email"
           prepend-icon="person"
           name="login"
-          label="Login"
+          label="Email"
           type="text"/>
         <v-text-field
           id="password"
+          v-model="password"
           prepend-icon="lock"
           name="password"
           label="Password"
@@ -24,18 +26,40 @@
       <v-spacer/>
       <v-btn
         color="teal"
-        class="white--text">Login</v-btn>
+        class="white--text" 
+        @click.prevent="login">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import firebase from '../../firebaseInit.js'
+
 export default {
   name: 'Login',
   layout: 'authentication',
   data: () => ({
-    drawer: null
-  })
+    drawer: null,
+    email: '',
+    password: ''
+  }),
+  methods: {
+    login: function(e) {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert(`You are logged in as ${user.email}`)
+            this.$router.go('/')
+          },
+          err => {
+            alert(err.message)
+          }
+        )
+      e.preventDefault()
+    }
+  }
 }
 </script>
 

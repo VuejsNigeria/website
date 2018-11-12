@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import 'firebase/firestore'
 
+/* eslint-disable */
 let config = {
     apiKey: 'AIzaSyAsfFEDRiO-vv7LrAbWcA_eF9KBzl6jL0k',
     authDomain: 'vuejsnigeria.firebaseapp.com',
@@ -10,6 +11,6 @@ let config = {
     messagingSenderId: '28406734459'
 }
 
-const firebaseApp = firebase.initializeApp(config)
-export default firebaseApp
-export const firestore = firebaseApp.firestore()
+// const firebaseApp = firebase.initializeApp(config)
+export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app()
+    // export const firestore = firebaseApp.firestore()
