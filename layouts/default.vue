@@ -25,6 +25,11 @@
           to="/">Home</v-btn>
         <v-btn
           flat
+          color="teal"
+          nuxt="true"
+          to="/members">Members</v-btn>
+        <v-btn
+          flat
           nuxt="true"
           color="teal"
           to="/login">Login</v-btn>
