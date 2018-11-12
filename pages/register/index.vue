@@ -17,6 +17,7 @@
       <v-window-item :value="1">
         <v-card-text>
           <v-text-field
+            v-model="email"
             label="Email"
             value="john@vuetifyjs.com"
           />
@@ -29,10 +30,12 @@
       <v-window-item :value="2">
         <v-card-text>
           <v-text-field
+            v-model="password1"
             label="Password"
             type="password"
           />
           <v-text-field
+            v-model="password2"
             label="Confirm Password"
             type="password"
           />
@@ -51,7 +54,8 @@
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png"
           />
           <h3 class="title font-weight-light mb-2">Welcome to Vuejs Nigeria</h3>
-          <span class="caption teal--text">Thanks for signing up!</span>
+          <span class="caption teal--text">Thanks for signing up!</span> <br>
+          <span class="caption teal--text"><a href="login"> Click to Login </a></span> 
         </div>
       </v-window-item>
     </v-window>
@@ -81,11 +85,16 @@
 </template>
 
 <script>
+import firebase from '../../firebaseInit.js'
+
 export default {
   name: 'Register',
   layout: 'authentication',
   data: () => ({
-    step: 1
+    step: 1,
+    email: '',
+    password1: '',
+    password2: ''
   }),
 
   computed: {
@@ -96,8 +105,29 @@ export default {
         case 2:
           return 'Create a password'
         default:
+          this.register()
           return 'Account created'
       }
+    }
+  },
+  methods: {
+    register() {
+      if (this.password1 !== this.password2) {
+        alert('Password does not match')
+        this.step = 2
+        return
+      }
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password1)
+        .then(
+          user => {
+            alert(`Account Successfully created for ${this.email}`)
+          },
+          err => {
+            alert(err.message)
+          }
+        )
     }
   }
 }
