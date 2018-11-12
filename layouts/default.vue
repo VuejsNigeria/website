@@ -17,7 +17,25 @@
 
       <span class="subheading hidden-sm-and-down">Vue Nigeria</span>
       <v-spacer/>
-      <v-toolbar-items>
+      <v-toolbar-items v-if="isLogged">
+        <span class="subheading hidden-sm-and-down">{{ currentUser }}</span>
+        <v-btn
+          flat
+          color="teal"
+          nuxt="true"
+          to="/">Home</v-btn>
+        <v-btn
+          flat
+          nuxt="true"
+          color="teal"
+          to="">Profile</v-btn>
+        <v-btn
+          flat
+          nuxt="true"
+          color="teal"
+          @click.prevent="logout()">Logout</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items v-if="!isLogged">
         <v-btn
           flat
           color="teal"
@@ -65,7 +83,7 @@
         <v-divider/>
 
         <v-card-text class="white--text">
-          &copy;2018 — <strong>Vue Naigeria</strong>
+          &copy;2018 — <strong>Vue Nigeria</strong>
         </v-card-text>
       </v-card>
     </v-footer>
@@ -73,6 +91,9 @@
 </template>
 
 <script>
+/* eslint-disable */
+import firebase from './../firebaseInit.js'
+
 export default {
   data: () => ({
     icons: [
@@ -81,7 +102,27 @@ export default {
       'fab fa-google-plus',
       'fab fa-linkedin',
       'fab fa-instagram'
-    ]
-  })
+    ],
+    currentUser: ''
+  }),
+  computed: {
+    isLogged() {
+      if (firebase.auth().currentUser) {
+        this.currentUser = firebase.auth().currentUser.email
+        return true
+      }
+      return false
+    }
+  },
+  methods: {
+    logout: function() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.go({ path: '/' })
+        })
+    }
+  }
 }
 </script>
