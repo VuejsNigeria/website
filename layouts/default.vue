@@ -28,7 +28,7 @@
           flat
           nuxt="true"
           color="teal"
-          to="">Profile</v-btn>
+          to="/profile">Profile</v-btn>
         <v-btn
           flat
           nuxt="true"
