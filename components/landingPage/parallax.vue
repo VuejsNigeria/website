@@ -16,7 +16,7 @@
       >
         <v-flex
           xs12
-          sm12
+          sm6
           md6
           lg6
           xl6>
@@ -25,19 +25,19 @@
         <v-flex
           xs6
           xs12
-          sm12
+          sm6
           md6
           lg6
           xl6>
           <h1 class="display-2 font-weight-thin mb-3">Vue Nigeria Community</h1>
           <h4 class="subheading">Stay up to date with upcoming meetups and meet Vue gurus or join our Ecosystem to get help with any questions you might have.</h4>
-          <div class="mb-3">
+          <div class="mt-3">
             <v-btn
               large
               class="green--text"
               round
-              href="https://discordapp.com/invite/HBherRA"
-              target="_blank">Visit Vue Land</v-btn>
+              href="https://discord.gg/"
+              target="_blank">Visit Vue Nigeria Land</v-btn>
           </div>
         </v-flex>
 

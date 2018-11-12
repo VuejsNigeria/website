@@ -2,11 +2,17 @@
   <v-app class="white">
     <v-toolbar
       color="white"
-      class="teal--text"
-      flat="true">
-      <v-toolbar-title>Vue Nigeria</v-toolbar-title>
+      class="teal--text">
+      <v-toolbar-title>VN</v-toolbar-title>
+      <v-divider
+        class="mx-3"
+        inset
+        vertical
+      />
+
+      <span class="subheading hidden-sm-and-down">Vue Nigeria</span>
       <v-spacer/>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items>
         <v-btn
           flat
           color="teal"
@@ -21,7 +27,7 @@
           flat
           color="teal"
           nuxt="true"
-          to="/register">Create Account</v-btn>
+          to="/register">Signup</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
