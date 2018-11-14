@@ -1,5 +1,62 @@
 <template>
-  <v-app class="white">
+  <v-app
+    id="inspire"
+    class="white">
+    <v-navigation-drawer
+      v-model="drawer"
+      class="teal darken-4"
+      absolute
+      temporary
+      app
+    >
+      <v-img
+        :aspect-ratio="16/9"
+        src="https://w-dog.net/wallpapers/12/10/555931010272670.jpg">
+        <v-layout
+          pa-2
+          column
+          fill-height
+          class="lightbox white--text">
+          <v-spacer/>
+          <v-flex shrink>
+            <v-list class="pa-1">
+              <v-list-tile avatar>
+                <v-list-tile-avatar>
+                  <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                </v-list-tile-avatar>
+
+                <v-list-tile-content>
+                  <v-list-tile-title class="white--text">John Leider</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+            <div class="body-1">heyfromjonathan@gmail.com</div>
+          </v-flex>
+        </v-layout>
+      </v-img>
+
+
+
+      <v-list
+        class="pt-0"
+        dense>
+        <v-list-tile
+          v-for="item in items"
+          :key="item.title"
+          :to="item.link"
+          ripple
+          nuxt="true"
+        >
+          <v-list-tile-action>
+            <v-icon color="white">{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title class="white--text">{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
     <v-toolbar
       class="teal--text"
       color="white"
@@ -7,6 +64,10 @@
       dark
 
       prominent="true">
+      <v-toolbar-side-icon
+        v-if="isMobile"
+        class="teal--text"
+        @click.stop="drawer = !drawer"/>
       <v-toolbar-title>
         <img
           src="~/assets/images/icon.png"
@@ -86,7 +147,6 @@
           to="/register">Signup</v-btn>
       </v-toolbar-items>
     </v-toolbar>
-
     <nuxt/>
 
     <v-footer
@@ -129,6 +189,15 @@ import firebase from './../firebaseInit.js'
 
 export default {
   data: () => ({
+    drawer: null,
+        items: [
+          { title: 'Home', icon: 'home', link: '/' },
+          { title: 'Profile', icon: 'account_circle', link: '/profile' },
+          { title: 'Events', icon: 'directions_walk', link: '/events' },
+          { title: 'Members', icon: 'group', link: '/members' },
+          { title: 'Login', icon: 'accessibility', link: '/login' },
+          { title: 'Signup', icon: 'power_settings_new', link: '/register' }
+        ],
     icons: [
       'fab fa-facebook',
       'fab fa-twitter',
@@ -139,6 +208,15 @@ export default {
     currentUser: ''
   }),
   computed: {
+    isMobile() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return true
+        case 'sm': return true
+        case 'md': return false
+        case 'lg': return false
+        case 'xl': return false
+      }
+    },
     isLogged() {
       if (firebase.auth().currentUser) {
         this.currentUser = firebase.auth().currentUser.email
@@ -163,3 +241,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+   .v-navigation-drawer {
+    transition: none !important;
+  }
+
+  .lightbox {
+    box-shadow: 0 0 20px inset rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
+  }
+</style>
