@@ -7,6 +7,7 @@
       class="teal darken-4"
       absolute
       temporary
+      fixed
       app
     >
       <v-img
