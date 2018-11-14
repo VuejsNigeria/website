@@ -5,8 +5,8 @@
     <v-navigation-drawer
       v-model="drawer"
       class="teal darken-4"
-      absolute
       temporary
+      fixed
       app
     >
       <v-img
@@ -62,7 +62,7 @@
       color="white"
       fixed="true"
       dark
-
+      app
       prominent="true">
       <v-toolbar-side-icon
         v-if="isMobile"
