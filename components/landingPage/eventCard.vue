@@ -33,7 +33,7 @@
             <v-btn flat>Share</v-btn>
             <v-btn
               flat
-              color="teal">Explore</v-btn>
+              color="teal">Meetup</v-btn>
               <!--&lt;!&ndash;<v-spacer/>&ndash;&gt;-->
               <!--&lt;!&ndash;<v-btn&ndash;&gt;-->
               <!--&lt;!&ndash;icon&ndash;&gt;-->

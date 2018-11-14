@@ -8,7 +8,8 @@ let config = {
     databaseURL: 'https://vuejsnigeria.firebaseio.com',
     projectId: 'vuejsnigeria',
     storageBucket: 'vuejsnigeria.appspot.com',
-    messagingSenderId: '28406734459'
+    messagingSenderId: '28406734459',
+
 }
 
 export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app()

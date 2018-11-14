@@ -28,7 +28,9 @@
         <v-btn
           color="teal"
           large
-          class="white--text">View all meetups</v-btn>
+          class="white--text"
+          nuxt="true"
+          to="/events">View all meetups</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -43,6 +45,7 @@ export default {
 <style scoped>
 .section-border {
   border-top: ghostwhite thin solid;
+  border-bottom: ghostwhite thin solid;
   border-radius: 10px;
 }
 </style>

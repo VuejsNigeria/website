@@ -5,9 +5,13 @@
       color="white"
       fixed="true"
       dark
-      inverted-scroll="true"
+
       prominent="true">
-      <v-toolbar-title>VN</v-toolbar-title>
+      <v-toolbar-title>
+        <img
+          src="~/assets/images/icon.png"
+          style="max-width: 50px">
+      </v-toolbar-title>
       <v-divider
         class="mx-3"
         inset
@@ -15,10 +19,12 @@
         color="grey"
       />
 
-      <span class="subheading hidden-sm-and-down">Vue Nigeria</span>
+      <span class="subheading">Vue Nigeria</span>
       <v-spacer/>
-      <v-toolbar-items v-if="isLogged">
-        <span class="subheading hidden-sm-and-down">{{ currentUser }}</span>
+      <v-toolbar-items
+        v-if="isLogged"
+        class="hidden-sm-and-down">
+        <!--<span class="subheading hidden-sm-and-down">{{ currentUser }}</span>-->
         <v-btn
           flat
           color="teal"
@@ -31,16 +37,38 @@
           to="/profile">Profile</v-btn>
         <v-btn
           flat
+          color="teal"
+          nuxt="true"
+          to="/events">Events</v-btn>
+        <v-btn
+          flat
+          color="teal"
+          nuxt="true"
+          to="/members">Members</v-btn>
+        <v-btn
+          flat
           nuxt="true"
           color="teal"
           @click.prevent="logout()">Logout</v-btn>
+        <v-avatar
+          color="teal"
+          class="mt-1">
+          <span class="white--text headline">{{ getFirstLetter }}</span>
+        </v-avatar>
       </v-toolbar-items>
-      <v-toolbar-items v-if="!isLogged">
+      <v-toolbar-items
+        v-if="!isLogged"
+        class="hidden-sm-and-down">
         <v-btn
           flat
           color="teal"
           nuxt="true"
           to="/">Home</v-btn>
+        <v-btn
+          flat
+          color="teal"
+          nuxt="true"
+          to="/events">Events</v-btn>
         <v-btn
           flat
           color="teal"
@@ -68,7 +96,7 @@
       <v-card
         flat
         tile
-        class="teal darken-4 white--text text-xs-center"
+        class="teal darken-3 white--text text-xs-center"
       >
         <v-card-text>
           <v-btn
@@ -117,6 +145,10 @@ export default {
         return true
       }
       return false
+    },
+    getFirstLetter() {
+      let userEmail =  firebase.auth().currentUser.email
+      return userEmail[0].toUpperCase()
     }
   },
   methods: {

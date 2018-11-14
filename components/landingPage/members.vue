@@ -1,6 +1,7 @@
 <template>
-  <div class="members text-md-center">
-    <p class="display-1 pt-5 grey--text">Members</p>
+  <div
+    class="members text-md-center mt-5">
+    <!--<p class="display-1 pt-5 grey&#45;&#45;text">Members</p>-->
 
     <v-container
       fluid
@@ -13,7 +14,6 @@
         content-tag="v-layout"
         row
         wrap
-        class="mt-5"
       >
         <v-flex
           slot="item"
@@ -76,7 +76,7 @@ export default {
   data: () => ({
     rowsPerPageItems: [4, 8, 12],
     pagination: {
-      rowsPerPage: 4
+      rowsPerPage: 8
     },
     items: [
       {

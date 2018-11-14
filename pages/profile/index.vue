@@ -28,7 +28,7 @@
       <v-spacer/>
       <v-btn
         color="teal"
-        class="white--text" 
+        class="white--text"
         @click.prevent="login">Update</v-btn>
     </v-card-actions>
   </v-card>
@@ -39,7 +39,7 @@ import firebase from '../../firebaseInit.js'
 
 export default {
   name: 'Login',
-  layout: 'authentication',
+  layout: 'default',
   data: () => ({
     drawer: null,
     email: '',

@@ -20,8 +20,10 @@
           md6
           lg6
           xl6>
-          <v-img :src="`https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2000px-Vue.js_Logo_2.svg.png`"/>
-        </v-flex>
+          <v-img
+            :src="`https://previews.dropbox.com/p/thumb/AAN9lxDmyWAcGJlwnAjoYObQ8lDybc-aTFbWiIkgi_0BVupAJAk0jHbuy77lfATgill7aaLt2RomGyr-WpTxhzZcRIEPWbOLSNCfYq3CpRmZg2spFViJ7oFn93YUPMXQAkeY9xEIhjeDSJg9i9Mus-n9NJV-HU-SQuzUqcc2tnnxBKhLgJjChGTDJjkabK8Sg24/p.png?size=1280x960&size_mode=3`"
+            style="max-width: 100%"
+            class="logo"/></v-flex>
         <v-flex
           xs6
           xs12
@@ -55,4 +57,36 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  animation: bounceIn 0.6s;
+  transform: rotate(0deg) scale(1) translateZ(0);
+  transition: all 0.4s cubic-bezier(0.8, 1.8, 0.75, 0.75);
+  cursor: pointer;
+}
+
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 1;
+    transform: scale(0.3);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 </style>
