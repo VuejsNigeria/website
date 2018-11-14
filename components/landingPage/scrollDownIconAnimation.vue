@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div
+    class="container hidden-sm-and-down">
     <div class="chevron"/>
     <div class="chevron"/>
     <div class="chevron"/>
@@ -14,15 +15,15 @@ export default {
 </script>
 
 <style scoped>
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #333;
-}
+/*body {*/
+/*display: flex;*/
+/*justify-content: center;*/
+/*align-items: center;*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*background: #333;*/
+/*}*/
 
 .container {
   position: relative;

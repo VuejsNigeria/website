@@ -2,7 +2,8 @@
   <v-toolbar
     dark
     color="teal"
-  >
+    floating
+    dense>
     <v-toolbar-title> <v-icon>search</v-icon></v-toolbar-title>
     <v-autocomplete
       :loading="loading"
@@ -10,7 +11,7 @@
       :search-input.sync="search"
       v-model="select"
       cache-items
-      class="mx-3"
+      class="mx-3 teal--text"
       flat
       hide-no-data
       hide-details
