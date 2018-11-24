@@ -45,7 +45,7 @@
           :key="item.title"
           :to="item.link"
           ripple
-          nuxt="true"
+          nuxt
         >
           <v-list-tile-action>
             <v-icon color="white">{{ item.icon }}</v-icon>
@@ -60,10 +60,10 @@
     <v-toolbar
       class="teal--text"
       color="white"
-      fixed="true"
+      fixed
       dark
       app
-      prominent="true">
+      prominent>
       <v-toolbar-side-icon
         v-if="isMobile"
         class="teal--text"
@@ -89,26 +89,26 @@
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/">Home</v-btn>
         <v-btn
           flat
-          nuxt="true"
+          nuxt
           color="teal"
           to="/profile">Profile</v-btn>
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/events">Events</v-btn>
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/members">Members</v-btn>
         <v-btn
           flat
-          nuxt="true"
+          nuxt
           color="teal"
           @click.prevent="logout()">Logout</v-btn>
         <v-avatar
@@ -123,26 +123,26 @@
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/">Home</v-btn>
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/events">Events</v-btn>
         <v-btn
           flat
           color="teal"
-          nuxt="true"
+          nuxt
           to="/members">Members</v-btn>
         <v-btn
           flat
-          nuxt="true"
+          nuxt
           color="teal"
           to="/login">Login</v-btn>
         <v-btn
           flat
-          nuxt="true"
+          nuxt
           color="teal"
           to="/register">Signup</v-btn>
       </v-toolbar-items>
