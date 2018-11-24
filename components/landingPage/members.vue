@@ -1,70 +1,95 @@
 <template>
   <div
     class="members text-md-center mt-5">
-    <!--<p class="display-1 pt-5 grey&#45;&#45;text">Members</p>-->
-
-    <v-container
-      fluid
-      grid-list-md>
-      <member-search-bar/>
-      <v-data-iterator
-        :items="items"
-        :rows-per-page-items="rowsPerPageItems"
-        :pagination.sync="pagination"
-        content-tag="v-layout"
-        row
-        wrap
-      >
-        <v-flex
-          slot="item"
-          slot-scope="props"
-          xs12
-          sm6
-          md4
-          lg3
-        >
-          <v-hover>
-            <v-card
-              slot-scope="{ hover }"
-              :class="`elevation-${hover ? 12 : 2}`">
-              <v-card-title>
-                <v-avatar
-                  :tile="tile"
-                  :size="100"
-                  color="grey lighten-4"
-                  style="max-width: 100%"
-                  class="img-center"
-                >
-                  <img
-                    src="https://cateringopmaat.nl/wp-content/uploads/2017/08/blank-profile-picture-973460_1280.png"
-                    alt="avatar"
-                  >
-                </v-avatar>
-              </v-card-title>
-              <v-divider/>
-              <v-card-title primary-title>
-                <div
-                  style="max-width: 100%"
-                  class="img-center grey--text">
-                  <h3 class="headline mb-0 text-md-center">Bello Musa</h3>
-                  <div>Kano, Nigeria</div>
-                </div>
-              </v-card-title>
-              <v-card-actions style="background-color: teal">
-                <v-btn
+    <p class="display-1 pt-5 grey--text">Proud Members</p>
+    <v-layout>
+      <v-flex>
+        <v-card>
+          <v-container
+            grid-list-sm
+            fluid>
+            <v-layout
+              row
+              wrap>
+              <v-flex
+                v-for="(member,n) in members"
+                :key="n"
+                xs6
+                sm2
+                d-flex
+              >
+                <v-card
                   flat
-                  color="white">
-                  Share</v-btn>
-                <v-btn
-                  flat
-                  color="white">
-                  Explore</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-data-iterator>
-    </v-container>
+                  tile
+                  class="d-flex">
+                  <v-container>
+                    <v-img
+                      :src="member.img"
+                      aspect-ratio="1"
+                      class="grey lighten-2 member"
+                      @click="showInfo(member)"
+                    >
+                      <v-layout
+                        slot="placeholder"
+                        fill-height
+                        align-center
+                        justify-center
+                        ma-0
+                      >
+                        <v-progress-circular
+                          indeterminate
+                          color="grey lighten-5" />
+                      </v-layout>
+                    </v-img>
+                    <span class="text--left">{{ member.name }}</span>
+                  </v-container>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <v-card>
+        <div class="card">
+          <!-- Header -->
+          <div
+            class="card-header">
+            <v-img
+              :src="current_member.img || 'https://picsum.photos/500/300?image=1'"
+              aspect-ratio="1"
+              class="grey lighten-2"
+            />
+            <span
+              class="card-header__follow member"
+              @click="dialog = false">
+              X
+            </span>
+          </div>
+          <!-- Content-->
+          <div class="card-content">
+            <div class="card-content__username">{{ current_member.name || '' }}</div>
+            <div class="card-content__bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor ipsam itaque eligendi repellendus adipisci sit in quam tempora, neque libero, suscipit animi praesentium aliquid. Nesciunt quis velit eligendi hic neque?</div>
+          </div>
+          <!-- Footer-->
+          <div class="card-footer">
+            <div class="card-footer__pens"> <span>@{{ current_member.twitter || '' }}</span>
+              <div class="label">Twitter</div>
+            </div>
+            <div class="card-footer__followers"> <span>@{{ current_member.fb || '' }}</span>
+              <div class="label">Facebook</div>
+            </div>
+            <div class="card-footer__following"> <span>@{{ current_member.github || '' }}</span>
+              <div class="label">Github</div>
+            </div>
+          </div>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -74,123 +99,273 @@ export default {
   name: 'Members',
   components: { MemberSearchBar },
   data: () => ({
+    dialog: false,
     rowsPerPageItems: [4, 8, 12],
     pagination: {
-      rowsPerPage: 8
+      rowsPerPage: 18
     },
-    items: [
+    current_member: {},
+    members: [
       {
-        value: false,
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        sodium: 87,
-        calcium: '14%',
-        iron: '1%'
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
       },
       {
-        value: false,
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        sodium: 129,
-        calcium: '8%',
-        iron: '1%'
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
       },
       {
-        value: false,
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0,
-        sodium: 337,
-        calcium: '6%',
-        iron: '7%'
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=3',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
       },
       {
-        value: false,
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3,
-        sodium: 413,
-        calcium: '3%',
-        iron: '8%'
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=4',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
       },
       {
-        value: false,
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9,
-        sodium: 327,
-        calcium: '7%',
-        iron: '16%'
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=5',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
       },
       {
-        value: false,
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0,
-        sodium: 50,
-        calcium: '0%',
-        iron: '0%'
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=6',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
       },
       {
-        value: false,
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0,
-        sodium: 38,
-        calcium: '0%',
-        iron: '2%'
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=7',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
       },
       {
-        value: false,
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5,
-        sodium: 562,
-        calcium: '0%',
-        iron: '45%'
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=8',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
       },
       {
-        value: false,
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9,
-        sodium: 326,
-        calcium: '2%',
-        iron: '22%'
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=9',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
       },
       {
-        value: false,
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein: 7,
-        sodium: 54,
-        calcium: '12%',
-        iron: '6%'
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=10',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=11',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=21',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=12',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=22',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=13',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=23',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=14',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=24',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=15',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=15',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=16',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
+      },
+      {
+        name: 'Musa Bello',
+        img: 'https://picsum.photos/500/300?image=1',
+        twitter: 'musbell',
+        fb: 'musbell',
+        github: 'musbell'
+      },
+      {
+        name: 'Timothy Olaleke',
+        img: 'https://picsum.photos/500/300?image=2',
+        twitter: 'timtech4u',
+        fb: 'timtech4u',
+        github: 'timtech4u'
       }
     ]
-  })
+  }),
+  methods: {
+    showInfo(member) {
+      this.dialog = true
+      this.current_member = member
+    }
+  }
 }
 </script>
 
@@ -198,7 +373,93 @@ export default {
 .members {
   background-color: #ededee;
 }
+.member:hover {
+  cursor: pointer;
+}
 .img-center {
   margin: auto;
+}
+
+.card {
+  background: #ffffff;
+  /* width: 300px; */
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  overflow: hidden;
+}
+.card-header {
+  position: relative;
+  /* background: #303841; */
+  height: 200px;
+  text-align: center;
+  overflow: hidden;
+}
+.card-header__avatar {
+  /* background: #303841; */
+  background-position: center 30%;
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+}
+.card-header__follow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 6px 10px;
+  color: #333333;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: normal;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.card-content {
+  text-align: center;
+  padding: 30px 20px;
+}
+.card-content__username {
+  margin: 0 0 10px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.card-content__username .badge {
+  display: inline-block;
+  background: #fcd000;
+  border-radius: 2px;
+  margin: 0 10px 0;
+  padding: 4px;
+  color: #333333;
+  font-size: 10px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.card-content__bio {
+  color: #666666;
+  font-size: 12px;
+}
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: #f3f3f3;
+  padding: 15px 40px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.card-footer .label {
+  display: block;
+  margin: 4px 0 0;
+  color: #666666;
+  font-size: 10px;
+  font-weight: 400;
 }
 </style>
