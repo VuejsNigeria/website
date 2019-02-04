@@ -1,6 +1,9 @@
 # vuejs-naija
 
-> vuejs-naija website
+> VueJs Nigeria Website
+
+## Firebase Configurations
+Request for / Create a *.env* file in your root directory with firebase credentials
 
 ## Build Setup
 
